@@ -35,10 +35,24 @@ public class IPInfoService : IIPInfoService
     return dto;
     }
 
-    public UpdateJob? GetJobStatus(Guid jobId)
+    public UpdateJobDto? GetJobStatus(Guid jobId)
+{
+    // Try to get the job from the dictionary
+    if (_jobs.TryGetValue(jobId, out var job))
     {
-        return _jobs.TryGetValue(jobId, out var job) ? job : null;
+        // If found, return the mapped UpdateJobDto
+        return new UpdateJobDto
+        {
+            JobId = jobId,
+            IsCompleted = job.IsCompleted,
+            PendingItems = job.Buffer.Count
+        };
     }
+    
+    // If not found, return null
+    return null;
+}
+
     
     public Guid CreateUpdateJob(IEnumerable<IPEntityDto> details)
     {   
@@ -71,7 +85,7 @@ public class IPInfoService : IIPInfoService
         }
     }
 
-    public IPEntityDto ConvertToDto(IPEntity entity)
+    private IPEntityDto ConvertToDto(IPEntity entity)
     {
         return new IPEntityDto
         {
@@ -84,7 +98,7 @@ public class IPInfoService : IIPInfoService
         };
     }
 
-    public IPEntity ConvertToEntity(IPEntityDto dto)
+    private IPEntity ConvertToEntity(IPEntityDto dto)
     {
         return new IPEntity
         {

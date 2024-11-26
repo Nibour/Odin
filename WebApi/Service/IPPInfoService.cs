@@ -7,5 +7,5 @@ public interface IIPInfoService
     Task<IPEntityDto> GetIPDetailsAsync(string ip);
     public Guid CreateUpdateJob(IEnumerable<IPEntityDto> details);
     Task ProcessJobsAsync();
-    public UpdateJob? GetJobStatus(Guid jobId);
+    public UpdateJobDto? GetJobStatus(Guid jobId);
 }

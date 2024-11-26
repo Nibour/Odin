@@ -51,12 +51,7 @@ public class IPInfoController : ControllerBase
             return NotFound(new { message = "Job not found" });
         }
 
-        return Ok(new
-        {
-            job.JobId,
-            job.IsCompleted,
-            PendingItems = job.Buffer.Count
-        });
+        return Ok(job);
     }
 
 }
