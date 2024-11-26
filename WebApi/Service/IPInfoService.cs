@@ -43,8 +43,8 @@ public class IPInfoService : IIPInfoService
         {
             while (job.Buffer.Count > 0)
             {
-                var batch = job.Buffer.Take(200).ToList(); // Get a batch of 200
-                job.Buffer = job.Buffer.Skip(200).ToList(); // Remove the processed items
+                var batch = job.Buffer.Take(10).ToList(); // Get a batch of 200
+                job.Buffer = job.Buffer.Skip(10).ToList(); // Remove the processed items
 
                 // Update database and cache
                 await _repository.UpdateDatabaseAsync(batch);
