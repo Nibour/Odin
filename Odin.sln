@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPStackCommunicationLibrary", "IPStackCommunicationLibrary\IPStackCommunicationLibrary.csproj", "{336F1F05-B649-4122-9053-7D75538666C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{5FC0E1B2-CAE1-4F32-85FF-27ABD93ADC20}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{336F1F05-B649-4122-9053-7D75538666C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{336F1F05-B649-4122-9053-7D75538666C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{336F1F05-B649-4122-9053-7D75538666C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{336F1F05-B649-4122-9053-7D75538666C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FC0E1B2-CAE1-4F32-85FF-27ABD93ADC20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FC0E1B2-CAE1-4F32-85FF-27ABD93ADC20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FC0E1B2-CAE1-4F32-85FF-27ABD93ADC20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FC0E1B2-CAE1-4F32-85FF-27ABD93ADC20}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
