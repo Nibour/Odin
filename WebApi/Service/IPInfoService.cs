@@ -42,8 +42,9 @@ public class IPInfoService : IIPInfoService
         foreach (var job in _jobs.Values.Where(j => !j.IsCompleted))
         {
             while (job.Buffer.Count > 0)
+
             {
-                var batch = job.Buffer.Take(10).ToList(); // Get a batch of 200
+                var batch = job.Buffer.Take(10).ToList(); // Get a batch of 10
                 job.Buffer = job.Buffer.Skip(10).ToList(); // Remove the processed items
 
                 // Update database and cache
