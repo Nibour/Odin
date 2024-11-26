@@ -1,10 +1,11 @@
 using IPStackCommunicationLibrary;
+using WebApi.Dto;
 using WebApi.Model;
 
 public interface IIPInfoService
 {
-    Task<IPDetails> GetIPDetailsAsync(string ip);
-    public Guid CreateUpdateJob(IEnumerable<IPEntity> details);
+    Task<IPEntityDto> GetIPDetailsAsync(string ip);
+    public Guid CreateUpdateJob(IEnumerable<IPEntityDto> details);
     Task ProcessJobsAsync();
     public UpdateJob? GetJobStatus(Guid jobId);
 }

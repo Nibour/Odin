@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Dto;
 using WebApi.Model;
 
 [ApiController]
@@ -27,7 +28,7 @@ public class IPInfoController : ControllerBase
     }
 
     [HttpPatch("update")]
-    public IActionResult UpdateIPDetails([FromBody] List<IPEntity> ips)
+    public IActionResult UpdateIPDetails([FromBody] List<IPEntityDto> ips)
     {
         if (ips == null || ips.Count == 0)
         {

@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using IPStackCommunicationLibrary;
+using WebApi.Dto;
 using WebApi.Model;
 
 public class IPInfoService : IIPInfoService
@@ -13,14 +14,25 @@ public class IPInfoService : IIPInfoService
         _jobs = jobs;
     }
 
-    public async Task<IPDetails> GetIPDetailsAsync(string ip)
+    public async Task<IPEntityDto> GetIPDetailsAsync(string ip)
     {
         // Validate IP address
         if (string.IsNullOrWhiteSpace(ip))
             throw new ArgumentException("Invalid IP address");
 
         // Get details from repository
-        return await _repository.GetDetailsAsync(ip);
+        var details = await _repository.GetDetailsAsync(ip);
+        var dto = new IPEntityDto
+        {
+            IP = ip,
+            City = details.City,
+            Country = details.Country,
+            Continent = details.Continent,
+            Latitude = details.Latitude,
+            Longitude = details.Longitude
+        };
+
+    return dto;
     }
 
     public UpdateJob? GetJobStatus(Guid jobId)
@@ -28,10 +40,13 @@ public class IPInfoService : IIPInfoService
         return _jobs.TryGetValue(jobId, out var job) ? job : null;
     }
     
-    public Guid CreateUpdateJob(IEnumerable<IPEntity> details)
-    {
+    public Guid CreateUpdateJob(IEnumerable<IPEntityDto> details)
+    {   
+
+        var entities = details.Select(ConvertToEntity);
+
         var job = new UpdateJob();
-        job.Buffer.AddRange(details);
+        job.Buffer.AddRange(entities);
 
         _jobs[job.JobId] = job;
         return job.JobId; // Return the JobId to the client
@@ -54,5 +69,31 @@ public class IPInfoService : IIPInfoService
 
             job.IsCompleted = true; // Mark the job as complete
         }
+    }
+
+    public IPEntityDto ConvertToDto(IPEntity entity)
+    {
+        return new IPEntityDto
+        {
+            IP = entity.IP,
+            City = entity.City,
+            Country = entity.Country,
+            Continent = entity.Continent,
+            Latitude = entity.Latitude,
+            Longitude = entity.Longitude
+        };
+    }
+
+    public IPEntity ConvertToEntity(IPEntityDto dto)
+    {
+        return new IPEntity
+        {
+            IP = dto.IP,
+            City = dto.City,
+            Country = dto.Country,
+            Continent = dto.Continent,
+            Latitude = dto.Latitude,
+            Longitude = dto.Longitude
+        };
     }
 }
