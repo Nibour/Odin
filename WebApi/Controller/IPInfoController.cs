@@ -27,7 +27,7 @@ public class IPInfoController : ControllerBase
         }
     }
 
-    [HttpPatch("update")]
+    [HttpPut("update")]
     public IActionResult UpdateIPDetails([FromBody] List<IPEntityDto> ips)
     {
         if (ips == null || ips.Count == 0)
